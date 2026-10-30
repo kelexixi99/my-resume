@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>陈渝 · Java后端开发工程师 · 个人简历</title>
+  <!-- Vue 3（如无法访问可换：https://unpkg.com/vue@3/dist/vue.global.prod.js） -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.27/dist/vue.global.prod.min.js"></script>
+  <!-- 图标库 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
+  <style>
+    /* ================= 全局 ================= */
+    :root{
+      --primary:#3d9a96;
+      --primary-dark:#2b7a77;
+      --primary-grad:linear-gradient(135deg,#48aaa5 0%,#2b7a77 100%);
+      --primary-light:#e8f5f4;
+      --text:#2b3a42;
+      --text-sub:#68797f;
+      --bg:#eef3f4;
+      --card:#ffffff;
+      --line:#e3ebee;
+      --radius:16px;
+      --shadow:0 6px 24px rgba(43,122,119,.09);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    [v-cloak]{display:none}
+    body{
+      font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+      background:radial-gradient(1100px 420px at 85% -60px,rgba(61,154,150,.14),transparent 60%),var(--bg);
+      color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased;
+    }
+    #app{max-width:1060px;margin:0 auto;padding:28px 18px 64px}
+
+    /* ================= 头部 ================= */
+    .hero{
+      position:relative;background:var(--primary-grad);border-radius:20px;
+      padding:40px 44px;color:#fff;display:flex;align-items:center;gap:36px;
+      box-shadow:0 12px 32px rgba(43,122,119,.28);overflow:hidden;
+    }
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.09)}
+    .hero::before{width:300px;height:300px;top:-140px;right:-70px}
+    .hero::after{width:200px;height:200px;bottom:-120px;left:36%}
+    .avatar{
+      width:110px;height:110px;border-radius:50%;background:#fff;color:var(--primary);
+      display:flex;align-items:center;justify-content:center;font-size:46px;font-weight:800;
+      flex-shrink:0;position:relative;z-index:1;box-shadow:0 0 0 8px rgba(255,255,255,.22);overflow:hidden;
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .hero-main{position:relative;z-index:1;flex:1;min-width:0}
+    .hero-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .hero-name{font-size:38px;font-weight:800;letter-spacing:4px}
+    .hero-title{
+      font-size:14px;font-weight:600;padding:5px 14px;border-radius:999px;
+      background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+    }
+    .hero-title i{margin-right:6px}
+    .hero-badges{margin:14px 0 16px;display:flex;gap:10px;flex-wrap:wrap}
+    .badge{
+      display:inline-flex;align-items:center;gap:6px;font-size:13px;
+      padding:5px 14px;border-radius:999px;
+      background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+    }
+    .contact{
+      list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:8px 24px;font-size:14px;opacity:.95;
+    }
+    .contact i{width:20px;text-align:center;margin-right:8px;opacity:.85}
+    .contact a{color:#fff;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.45)}
+
+    /* ================= 布局 ================= */
+    .layout{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1.1fr);gap:22px;margin-top:22px;align-items:start}
+    .col-main,.col-side{display:flex;flex-direction:column;gap:22px}
+    .card{
+      background:var(--card);border-radius:var(--radius);padding:26px 28px;
+      box-shadow:var(--shadow);border:1px solid var(--line);
+      animation:fadeUp .55s ease both;
+    }
+    .col-main .card:nth-child(1){animation-delay:.05s}
+    .col-main .card:nth-child(2){animation-delay:.12s}
+    .col-main .card:nth-child(3){animation-delay:.19s}
+    .col-side .card:nth-child(1){animation-delay:.10s}
+    .col-side .card:nth-child(2){animation-delay:.17s}
+    .col-side .card:nth-child(3){animation-delay:.24s}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+    .sec-title{
+      display:flex;align-items:center;gap:10px;font-size:19px;font-weight:700;
+      color:var(--primary-dark);padding-bottom:12px;margin-bottom:18px;
+      border-bottom:2px solid var(--primary-light);position:relative;
+    }
+    .sec-title::after{content:"";position:absolute;left:0;bottom:-2px;width:56px;height:2px;background:var(--primary);border-radius:2px}
+    .sec-title i{
+      width:34px;height:34px;border-radius:10px;background:var(--primary-grad);color:#fff;
+      display:inline-flex;align-items:center;justify-content:center;font-size:15px;
+    }
+
+    /* ================= 求职意向 ================= */
+    .intention{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .intention-item{
+      background:var(--primary-light);border:1px dashed rgba(61,154,150,.4);
+      border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;
+    }
+    .intention-item i{font-size:20px;color:var(--primary)}
+    .intention-item>div{display:flex;flex-direction:column}
+    .intention-item .label{font-size:12.5px;color:var(--text-sub)}
+    .intention-item .value{font-size:16px;font-weight:700;color:var(--primary-dark)}
+
+    /* ================= 时间线（教育经历） ================= */
+    .timeline{position:relative;padding-left:26px}
+    .timeline::before{
+      content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;
+      background:linear-gradient(var(--primary),rgba(61,154,150,.15));
+    }
+    .t-item{position:relative;padding-bottom:24px}
+    .t-item:last-child{padding-bottom:0}
+    .t-item::before{
+      content:"";position:absolute;left:-27px;top:7px;width:12px;height:12px;border-radius:50%;
+      background:#fff;border:3px solid var(--primary);box-shadow:0 0 0 4px rgba(61,154,150,.15);
+    }
+    .t-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .t-time{
+      font-size:12.5px;font-weight:700;color:var(--primary-dark);
+      background:var(--primary-light);padding:2px 10px;border-radius:6px;
+      font-variant-numeric:tabular-nums;
+    }
+    .t-school{font-size:16.5px;font-weight:700}
+    .t-major{font-size:13px;color:var(--text-sub)}
+    .t-desc{margin-top:8px;font-size:14px;color:var(--text-sub);text-align:justify}
+
+    /* ================= 项目经历 ================= */
+    .project{
+      padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:#fbfdfd;
+      transition:.25s;margin-bottom:14px;
+    }
+    .project:last-of-type{margin-bottom:0}
+    .project:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(43,122,119,.12);border-color:rgba(61,154,150,.45)}
+    .p-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+    .p-title{font-size:15.5px;font-weight:700}
+    .p-desc{font-size:14px;color:var(--text-sub);text-align:justify}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{
+      font-size:12px;color:var(--primary-dark);background:var(--primary-light);
+      padding:3px 10px;border-radius:999px;border:1px solid rgba(61,154,150,.25);
+    }
+    .site-box{
+      margin-top:16px;display:flex;gap:14px;align-items:flex-start;
+      background:var(--primary-light);border:1px dashed rgba(61,154,150,.45);
+      border-radius:12px;padding:14px 18px;
+    }
+    .site-box i{font-size:22px;color:var(--primary);margin-top:3px}
+    .site-box strong{color:var(--primary-dark);font-size:14.5px}
+    .site-box p{font-size:13.5px;color:var(--text-sub)}
+
+    /* ================= 相关技能 ================= */
+    .skill-tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px}
+    .skill-tag{
+      display:inline-flex;align-items:center;font-size:13px;font-weight:600;
+      color:var(--primary-dark);background:var(--primary-light);
+      border:1px solid rgba(61,154,150,.3);padding:6px 12px;border-radius:8px;transition:.2s;
+    }
+    .skill-tag i{font-size:11px;margin-right:6px}
+    .skill-tag:hover{background:var(--primary);color:#fff}
+    .skill-tag em{font-style:normal;font-size:11px;font-weight:400;padding:1px 7px;border-radius:999px;margin-left:7px}
+    .lv1{background:var(--primary);color:#fff}
+    .lv2{background:rgba(61,154,150,.22);color:var(--primary-dark)}
+    .lv3{background:#eef1f2;color:#8a9aa0}
+    .skill-tag:hover .lv1,.skill-tag:hover .lv2{background:rgba(255,255,255,.25);color:#fff}
+    .skill-tag:hover .lv3{background:rgba(255,255,255,.25);color:#fff}
+    .skill-note{
+      font-size:13.5px;color:var(--text-sub);background:#fbfdfd;
+      border-left:3px solid var(--primary);padding:10px 14px;border-radius:0 8px 8px 0;
+    }
+
+    /* ================= 获奖情况 ================= */
+    .award{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px dashed var(--line)}
+    .award:last-child{border-bottom:none;padding-bottom:0}
+    .award:first-child{padding-top:0}
+    .award-icon{
+      width:38px;height:38px;border-radius:10px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;
+    }
+    .award-icon.gold{background:linear-gradient(135deg,#f7c948,#e8a33d)}
+    .award-icon.bronze{background:linear-gradient(135deg,#d99a6c,#b97a4b)}
+    .award-name{font-size:14px;font-weight:600}
+    .award-meta{display:flex;align-items:center;gap:10px;margin-top:4px}
+    .award-level{font-size:11.5px;font-weight:700;padding:1px 9px;border-radius:999px;border:1px solid transparent}
+    .award-level.gold{color:#c77f16;background:#fdf3dd;border-color:#f0d9a8}
+    .award-level.bronze{color:#a9683f;background:#f9ede4;border-color:#ecd3bf}
+
+    /* ================= 自我评价 ================= */
+    .eval-text{font-size:14px;color:var(--text-sub);text-align:justify}
+    .eval-text + .eval-text{margin-top:10px}
+    .hobbies{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .hobby{font-size:12.5px;background:#fdf6ea;color:#a5722a;border:1px solid #f0dcb8;padding:4px 12px;border-radius:999px}
+
+    .footer{text-align:center;margin-top:30px;font-size:12.5px;color:#9fb0b5}
+
+    /* ================= 响应式 ================= */
+    @media (max-width:880px){
+      .layout{grid-template-columns:1fr}
+      .hero{flex-direction:column;text-align:center;padding:34px 22px;gap:20px}
+      .hero-top{justify-content:center}
+      .hero-badges{justify-content:center}
+      .hero-name{font-size:30px}
+      .intention{grid-template-columns:1fr}
+      .card{padding:22px 20px}
+    }
+
+    /* ================= 打印优化 ================= */
+    @media print{
+      body{background:#fff}
+      #app{max-width:100%;padding:0}
+      .card{box-shadow:none;break-inside:avoid}
+      .hero{box-shadow:none}
+    }
+  </style>
+</head>
+<body>
+<div id="app" v-cloak>
+
+  <!-- ========== 头部 ========== -->
+  <header class="hero">
+    <div class="avatar" title="个人照片">
+      <!-- 替换真实照片：把下面 span 换成 <img src="photo.jpg" alt="陈渝" /> -->
+      <span>陈</span>
+    </div>
+    <div class="hero-main">
+      <div class="hero-top">
+        <h1 class="hero-name">{{ profile.name }}</h1>
+        <span class="hero-title"><i class="fa-solid fa-laptop-code"></i>{{ profile.title }}</span>
+      </div>
+      <div class="hero-badges">
+        <span class="badge"><i class="fa-solid fa-bullseye"></i>求职意向：{{ profile.job }}</span>
+        <span class="badge"><i class="fa-regular fa-circle-check"></i>{{ profile.status }}</span>
+      </div>
+      <ul class="contact">
+        <li><i class="fa-solid fa-phone"></i><a :href="'tel:' + profile.phone">{{ profile.phone }}</a></li>
+        <li><i class="fa-solid fa-envelope"></i><a :href="'mailto:' + profile.email">{{ profile.email }}</a></li>
+        <li><i class="fa-solid fa-user"></i>{{ profile.gender }} · {{ profile.ethnicity }}族</li>
+        <li><i class="fa-solid fa-location-dot"></i>现所在地：{{ profile.city }}</li>
+        <li><i class="fa-solid fa-house-flag"></i>户籍：{{ profile.hukou }}</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ========== 主体 ========== -->
+  <main class="layout">
+
+    <!-- 左列 -->
+    <div class="col-main">
+
+      <!-- 求职意向 -->
+      <section class="card">
+        <h2 class="sec-title"><i class="fa-solid fa-bullseye"></i>求职意向</h2>
+        <div class="intention">
+          <div class="intention-item">
+            <i class="fa-solid fa-briefcase"></i>
+            <div><span class="label">意向岗位</span><span class="value">{{ profile.job }}</span></div>
+          </div>
+          <div class="intention-item">
+            <i class="fa-solid fa-clock"></i>
+            <div><span class="label">当前状态</span><span class="value">{{ profile.status }}</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 教育经历 -->
+      <section class="card">
+        <h2 class="sec-title"><i class="fa-solid fa-graduation-cap"></i>教育经历</h2>
+        <div class="timeline">
+          <div class="t-item" v-for="(edu, i) in educations" :key="i">
+            <div class="t-head">
+              <span class="t-time">{{ edu.time }}</span>
+              <span class="t-school">{{ edu.school }}</span>
+              <span class="t-major">{{ edu.major }}</span>
+            </div>
+            <p class="t-desc">{{ edu.desc }}</p>
+            <div class="tags">
+              <span class="tag" v-for="t in edu.tags" :key="t">{{ t }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 项目经历 -->
+      <section class="card">
+        <h2 class="sec-title"><i class="fa-solid fa-diagram-project"></i>项目经历</h2>
+        <div class="project" v-for="(p, i) in projects" :key="i">
+          <div class="p-head">
+            <span class="t-time">{{ p.time }}</span>
+            <span class="p-title">{{ p.name }}</span>
+          </div>
+          <p class="p-desc">{{ p.desc }}</p>
+          <div class="tags">
+            <span class="tag" v-for="t in p.tags" :key="t">{{ t }}</span>
+          </div>
+        </div>
+        <div class="site-box">
+          <i class="fa-solid fa-globe"></i>
+          <div>
+            <strong>已上线个人网站</strong>
+            <p>拥有域名 cp1ml00744069.vicp.fun 与网站（餐厅点餐系统）</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 右列 -->
+    <aside class="col-side">
+
+      <!-- 相关技能 -->
+      <section class="card">
+        <h2 class="sec-title"><i class="fa-solid fa-code"></i>相关技能</h2>
+        <div class="skill-tags">
+          <span class="skill-tag" v-for="s in skills" :key="s.name">
+            <i class="fa-solid fa-check"></i>{{ s.name }}<em :class="lvMap[s.lv]">{{ s.lv }}</em>
+          </span>
+        </div>
+        <p class="skill-note">{{ skillSummary }}</p>
+      </section>
+
+      <!-- 获奖情况 -->
+      <section class="card">
+        <h2 class="sec-title"><i class="fa-solid fa-trophy"></i>获奖情况</h2>
+        <div class="award" v-for="(a, i) in awards" :key="i">
+          <div class="award-icon" :class="a.cls"><i class="fa-solid fa-medal"></i></div>
+          <div>
+            <p class="award-name">{{ a.name }}</p>
+            <p class="award-meta">
+              <span class="t-time">{{ a.time }}</span>
+              <span class="award-level" :class="a.cls">{{ a.level }}</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 自我评价 -->
+      <section class="card">
+        <h2 class="sec-title"><i class="fa-solid fa-pen-nib"></i>自我评价</h2>
+        <p class="eval-text" v-for="(t, i) in selfEval" :key="i">{{ t }}</p>
+        <div class="hobbies">
+          <span class="hobby" v-for="h in hobbies" :key="h">{{ h }}</span>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="footer">陈渝的个人简历 · 基于 Vue 3 的纯前端静态页面 · {{ year }}</footer>
+</div>
+
+<script>
+const { createApp, reactive } = Vue;
+
+createApp({
+  setup() {
+    /* ========== 简历数据：想改内容直接改这里即可 ========== */
+    const profile = reactive({
+      name: '陈渝',
+      title: 'Java 后端开发工程师',
+      gender: '男',
+      ethnicity: '汉',
+      hukou: '重庆市彭水县岩东乡 6 组',
+      city: '重庆市彭水县',
+      phone: '18723462949',
+      email: '3271503889@qq.com',
+      job: '后端开发工程师',
+      status: '随时到岗'
+    });
+
+    const educations = [
+      {
+        time: '2022.9 - 2025.9',
+        school: '重庆电子科技职业大学',
+        major: '软件技术 · 专科',
+        desc: '在校曾学习信息安全技术与实施、Java 程序设计、软件测试、响应式网页设计等课程，并顺利且达到优秀标准完成学业。',
+        tags: ['信息安全', 'Java 程序设计', '软件测试', '响应式网页设计']
+      },
+      {
+        time: '2025.9 - 2027.6',
+        school: '重庆外语外事学院',
+        major: '软件工程 · 本科',
+        desc: '在校学习操作系统、软件需求分析、计算机组成原理、计算机网络、数据库系统概论、SpringBoot + Vue3 实践、Android 开发等课程，各科平均达到良好，担任一年学习委员。',
+        tags: ['操作系统', '计算机网络', '数据库', 'SpringBoot + Vue3', 'Android', '学习委员']
+      }
+    ];
+
+    const projects = [
+      {
+        time: '2023 - 2023',
+        name: '项目框架搭建与数据库连接',
+        desc: '搭建项目框架并将客户端的操作连接到数据库，完成简易的客户端页面设计；项目设计完成后进行单元测试与集成测试，排查并解决存在的异常，最终向实训老师汇报完成情况并成功获得优秀。',
+        tags: ['框架搭建', '单元测试', '集成测试']
+      },
+      {
+        time: '2023 - 2024',
+        name: '超市管理系统（MVC）',
+        desc: '使用 MVC 模式独立完成超市管理系统的开发：从底层操作数据库，到完成业务逻辑的处理，再根据用户的请求将所需信息展示给用户。最终成绩达到优秀。',
+        tags: ['MVC', '数据库', '业务逻辑']
+      },
+      {
+        time: '2024 - 2025',
+        name: '餐厅点餐系统（SSM）',
+        desc: '使用 SSM 独立开发餐厅点餐系统：用户从 Web 站点访问并发起请求，通过 Ajax、Servlet 等技术接收请求；控制器调用对应的业务处理逻辑，处理结果经 MySQL 持久化保存后，由前端页面渲染并反馈给用户。最终成绩达到优秀。',
+        tags: ['SSM', 'Ajax', 'Servlet', 'MySQL', '前后端交互']
+      }
+    ];
+
+    const skills = [
+      { name: 'Java', lv: '熟练' },
+      { name: 'JavaScript', lv: '熟练' },
+      { name: 'Vue2 / Vue3', lv: '熟练' },
+      { name: 'MySQL', lv: '熟练' },
+      { name: 'SSM', lv: '掌握' },
+      { name: 'SpringBoot', lv: '掌握' },
+      { name: 'Web 前端', lv: '掌握' },
+      { name: '数据采集与安全', lv: '掌握' },
+      { name: 'WebSocket', lv: '了解' },
+      { name: 'Kafka', lv: '了解' },
+      { name: '微服务', lv: '了解' }
+    ];
+    const lvMap = { '熟练': 'lv1', '掌握': 'lv2', '了解': 'lv3' };
+
+    const skillSummary =
+      '熟练掌握 Java、JavaScript、Vue2/3，了解 WebSocket、Kafka；参与过校内 Java 程序设计；学习 Web 前端、数据采集与数据安全；已获全国计算机二级，接触微服务。';
+
+    const awards = [
+      { time: '2023 - 2024', name: '校级程序设计大赛 Java 赛项', level: '一等奖', cls: 'gold' },
+      { time: '2022 - 2023', name: '第十四届蓝桥杯 C++ 赛项（校级）', level: '三等奖', cls: 'bronze' },
+      { time: '2022 - 2023', name: '校赛「学思践悟新思想 知识竞答比拼学 争做时代好青年」', level: '三等奖', cls: 'bronze' }
+    ];
+
+    const selfEval = [
+      '拥有良好的沟通和协调能力，善于应变，能够快速适应新环境；熟悉办公软件，自学能力强，具备缜密的逻辑思维，面对问题能够迅速定位并解决。为人踏实稳重、严谨细心、责任心强，真诚和善、乐观自信、乐于学习，具有良好的团队协作精神。',
+      '热爱运动，闲暇时喜欢玩滑板、打篮球，也爱下象棋、五子棋，偶尔喜欢唱歌。'
+    ];
+    const hobbies = ['🛹 滑板', '🏀 篮球', '♟️ 象棋', '⚫ 五子棋', '🎤 唱歌'];
+
+    const year = new Date().getFullYear();
+
+    return { profile, educations, projects, skills, lvMap, skillSummary, awards, selfEval, hobbies, year };
+  }
+}).mount('#app');
+</script>
+</body>
+</html>
